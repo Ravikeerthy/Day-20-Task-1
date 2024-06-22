@@ -1,0 +1,45 @@
+body {
+  background: url("./media/Covid-19.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+h1 {
+  text-align: center;
+  color: white;
+  margin: 50px;
+}
+
+.btn {
+  padding: 1rem 2rem;
+  font-weight: 700;
+  background: rgb(240, 234, 234);
+  color: rgb(233, 21, 21);
+  border-radius: 0.5rem;
+  border-bottom: 2px solid rgb(247, 128, 128);
+  border-right: 2px solid rgb(241, 127, 127);
+  border-top: 2px solid rgb(244, 76, 76);
+  border-left: 2px solid rgb(234, 83, 83);
+  transition-duration: 1s;
+  transition-property: border-top, border-left, border-bottom, border-right,
+    box-shadow;
+  margin: 30px;
+}
+
+.btn:hover {
+  border-top: 2px solid rgb(244, 76, 76);
+  border-left: 2px solid rgb(234, 83, 83);
+  border-bottom: 2px solid rgb(247, 128, 128);
+  border-right: 2px solid rgb(241, 127, 127);
+  box-shadow: rgba(245, 77, 96, 0.4) 5px 5px, rgba(233, 105, 105, 0.3) 10px 10px,
+    rgba(231, 88, 88, 0.2) 15px 15px;
+}
+
+p,
+h3 {
+  text-align: center;
+}
+
+#designDiv {
+  margin: 50px;
+  border-radius: 25px;
+}
