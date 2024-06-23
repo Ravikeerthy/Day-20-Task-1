@@ -1,58 +1,65 @@
 // Using async function to fetch api
-async function calling(){
+async function calling() {
+  try {
     let api = await fetch("https://data.covid19india.org/v4/min/data.min.json");
     let data = await api.json();
     console.log(data);
-    
+
     let mainData = data["TT"];
-    console.log(mainData);   // Checking the fetched data
+    console.log(mainData); // Checking the fetched data
 
     let list = Object.keys(data);
 
-    list.forEach((stateName)=>{ // Using the FOREACH method calls a each element in the dropdown option
-        let  opt = document.createElement("option");
-        opt.textContent = stateName;
-        opt.value = stateName;
-        document.getElementById("menudis").appendChild(opt);
-    })
+    list.forEach((stateName) => {
+      // Using the FOREACH method calls a each element in the dropdown option
+      let opt = document.createElement("option");
+      opt.textContent = stateName;
+      opt.value = stateName;
+      document.getElementById("menudis").appendChild(opt);
+    });
+  } catch (error) {
+    console.error(error);
+  }
 }
-calling()
+calling();
 
-function displayDetails(){
-    let getInput = document.getElementById("menudis").value; // Get the selected state
+function displayDetails() {
+  let getInput = document.getElementById("menudis").value; // Get the selected state
 
-    let url = fetch("https://data.covid19india.org/v4/min/data.min.json"); // Fetching the Covid api
+  let url = fetch("https://data.covid19india.org/v4/min/data.min.json"); // Fetching the Covid api
 
-    url.then((resolve)=> resolve.json())
+  url
+    .then((resolve) => resolve.json())
 
-    .then((data)=>{
-        console.log(data);
+    .then((data) => {
+      console.log(data);
 
-        let display = data[getInput].total;     
-        let population = data[getInput].meta;
+      let display = data[getInput].total;
+      let population = data[getInput].meta;
 
-        console.log(`The total population of ${getInput} : ${population.population}`);   
-        console.log(display);
-        
-        // Getting the data from api
+      console.log(
+        `The total population of ${getInput} : ${population.population}`
+      );
+      console.log(display);
 
-        let totPopulation = population.population;
+      // Getting the data from api
 
-        let confirmed = display.confirmed;
+      let totPopulation = population.population;
 
-        let recovered = display.recovered;
+      let confirmed = display.confirmed;
 
-        let affected = display.deceased;
+      let recovered = display.recovered;
 
-        let vaccine = display.vaccinated1 + display.vaccinated2;
+      let affected = display.deceased;
 
-        let testcase = display.tested;
+      let vaccine = display.vaccinated1 + display.vaccinated2;
 
-        // Display the data in card with help of DOM
-        var div = document.createElement("div");
-        
+      let testcase = display.tested;
 
-        div.innerHTML = `<div class="d-flex justify-content-center" id="designDiv">
+      // Display the data in card with help of DOM
+      var div = document.createElement("div");
+
+      div.innerHTML = `<div class="d-flex justify-content-center" id="designDiv">
         <div class="card" style="width: 18rem;">
                 <div class="card-body">
           <h3 class="card-title"><strong>${getInput}</strong></h3>
@@ -66,15 +73,11 @@ function displayDetails(){
           
         </div>
       </div>
-      </div>`;    
-        // appending the element to display in UI
+      </div>`;
+      // appending the element to display in UI
       document.getElementById("resultBox").append(div);
-        
     })
-
-
+    .catch((error) => {
+      console.error(error);
+    });
 }
-
-
-
-
